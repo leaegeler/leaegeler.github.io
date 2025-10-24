@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import ArrowLeft from '../assets/arrow-left.svg'
 
 interface Project {
   id: number
@@ -139,9 +140,9 @@ export function ProjectSection({
                 />
                 <button
                   onClick={handleClose}
-                  className="absolute top-8 left-8 text-white text-sm hover:opacity-60 transition-opacity z-10"
+                  className="absolute top-8 left-8 text-white text-sm hover:opacity-60 transition-opacity z-10 cursor-pointer"
                 >
-                  Close
+                  back to main page
                 </button>
 
                 {/* Details section below image in same snap section */}
@@ -153,10 +154,10 @@ export function ProjectSection({
                   transition={{ duration: 0.2 }}
                 >
                   <div className="max-w-[1400px] mx-auto">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16">
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-16">
                       {/* Project title - Left column */}
                       <div className="lg:col-span-1">
-                        <h2 className="text-2xl font-light text-white">{expandedProject.title}</h2>
+                        <h2 className="font-light text-white" style={{ fontSize: '1.5em' }}>{expandedProject.title}</h2>
                       </div>
 
                       {/* Description - Middle column */}
@@ -166,8 +167,8 @@ export function ProjectSection({
                         </p>
                       </div>
 
-                      {/* Services and Link - Right column */}
-                      <div className="lg:col-span-1 space-y-6">
+                      {/* Services - Third column */}
+                      <div className="lg:col-span-1">
                         <div>
                           <h3 className="text-sm font-medium mb-3 text-white">Services</h3>
                           <div className="space-y-1">
@@ -178,7 +179,10 @@ export function ProjectSection({
                             ))}
                           </div>
                         </div>
+                      </div>
 
+                      {/* Visit Website - Fourth column (right) */}
+                      <div className="lg:col-span-1">
                         {expandedProject.link && (
                           <a
                             href={expandedProject.link}
@@ -272,9 +276,28 @@ export function ProjectSection({
                 {/* Back to main page link at bottom */}
                 <div className="pt-8">
                   <button
-                    className="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer"
+                    onClick={handleClose}
+                    className="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center gap-2"
                   >
-                    Back to main page
+                    <img
+                      src={ArrowLeft}
+                      alt=""
+                      className="w-5 h-5"
+                      style={{
+                        animation: 'bounce-arrow-left 2s ease-in-out infinite'
+                      }}
+                    />
+                    <span>back to main page</span>
+                    <style>{`
+                      @keyframes bounce-arrow-left {
+                        0%, 100% {
+                          transform: translateX(0);
+                        }
+                        50% {
+                          transform: translateX(-6px);
+                        }
+                      }
+                    `}</style>
                   </button>
                 </div>
 

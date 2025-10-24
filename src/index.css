@@ -43,8 +43,8 @@
 
 :root {
   --radius: 0.625rem;
-  --background: #0a0a0a;
-  --foreground: #ffffff;
+  --background: #0c0c0c;
+  --foreground: #f9f9f9;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -119,5 +119,8 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  h2 {
+    font-size: 1.5em;
   }
 }

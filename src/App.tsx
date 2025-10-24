@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 import { ProjectSection } from './components/ProjectSection'
+import ArrowDown from './assets/arrow-down.svg'
 
 interface Project {
   id: number
@@ -90,9 +91,27 @@ function App() {
       >
         <button
           onClick={scrollToContact}
-          className="text-sm hover:text-gray-300 transition-colors cursor-pointer"
+          className="text-sm hover:text-gray-300 transition-colors cursor-pointer flex items-center gap-2"
         >
-          Get in touch
+          <span>Get in touch</span>
+          <img
+            src={ArrowDown}
+            alt=""
+            className="w-5 h-5"
+            style={{
+              animation: 'bounce-arrow 2s ease-in-out infinite'
+            }}
+          />
+          <style>{`
+            @keyframes bounce-arrow {
+              0%, 100% {
+                transform: translateY(0);
+              }
+              50% {
+                transform: translateY(6px);
+              }
+            }
+          `}</style>
         </button>
       </header>
 
@@ -128,20 +147,20 @@ function App() {
             <h3 className="text-sm font-medium mb-4">Design</h3>
             <ul className="text-sm text-gray-400 space-y-1">
               <li>Figma</li>
-              <li>Photoshop</li>
-              <li>AfterEffects</li>
-              <li>Illustrator</li>
+              <li>Wave, AxeDevTools</li>
+              <li>Adobe Creative Cloud</li>
+              <li>Mailchimp, Directmail</li>
             </ul>
           </div>
 
           <div className="space-y-2 text-right">
             <h3 className="text-sm font-medium mb-4">Development</h3>
             <ul className="text-sm text-gray-400 space-y-1">
-              <li>Webflow</li>
+              <li>Claude Code</li>
               <li>HTML / CSS</li>
-              <li>Javascript</li>
-              <li>GSAP</li>
-              <li>Finsweet</li>
+              <li>Webflow</li>
+              <li>WordPress, TYPO3</li>
+              <li>Shopify</li>
             </ul>
           </div>
         </div>
@@ -185,33 +204,51 @@ function App() {
           {/* Top - Contact Me dot */}
           <div className="flex items-center gap-2 border-t border-black pt-4">
             <div className="w-2 h-2 bg-black rounded-full"></div>
-            <span className="text-sm uppercase tracking-wide">CONTACT ME</span>
+            <span className="text-sm uppercase tracking-wide">Get in touch</span>
           </div>
 
           {/* Middle - Get it touch heading and email */}
           <div className="space-y-8 py-20">
             <h2 className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-light leading-none">
-              Get it touch
+              Say hiii and smile
             </h2>
             <a
-              href="mailto:hello@leaegeler.com"
-              className="text-[6vw] md:text-[5vw] lg:text-[4vw] font-light text-[#8b8b6b] hover:text-black transition-colors"
+              href="mailto:hello@leaegeler.de"
+              className="text-[6vw] md:text-[5vw] lg:text-[4vw] font-light text-[#0c0c0c] hover:text-black transition-colors relative inline-block email-link"
             >
-              hello@leaegeler.com
+              hello@leaegeler.de
+              <style>{`
+                .email-link {
+                  border-bottom: 2px solid #0c0c0c;
+                }
+                .email-link::after {
+                  content: '';
+                  position: absolute;
+                  bottom: -2px;
+                  left: 0;
+                  width: 0;
+                  height: 2px;
+                  background-color: black;
+                  transition: width 0.5s ease-out;
+                }
+                .email-link:hover::after {
+                  width: 100%;
+                }
+              `}</style>
             </a>
           </div>
 
           {/* Bottom - Social Links */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-black pt-8">
             <a
-              href="https://linkedin.com"
+              href="www.linkedin.com/in/lea-egeler-a4150415a"
               target="_blank"
               rel="noopener noreferrer"
               className="text-4xl md:text-5xl font-light hover:opacity-60 transition-opacity"
             >
-              Linkedin
+              LinkedIn
             </a>
-            <a
+            {/* <a
               href="https://dribbble.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -226,7 +263,7 @@ function App() {
               className="text-4xl md:text-5xl font-light hover:opacity-60 transition-opacity"
             >
               Behance
-            </a>
+            </a> */}
           </div>
         </div>
       </section>
