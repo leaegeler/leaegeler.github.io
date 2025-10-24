@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { ProjectSection } from './components/ProjectSection'
 
 interface Project {
@@ -12,7 +12,6 @@ interface Project {
 }
 
 function App() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [heroOpacity, setHeroOpacity] = useState(1)
   const contactRef = useRef<HTMLElement>(null)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -158,7 +157,7 @@ function App() {
         alignment="left"
         project1={projects[0]}
         project2={projects[1]}
-        onProjectClick={setSelectedProject}
+        onProjectClick={() => {}}
         enableSnap={true}
       />
 
@@ -167,7 +166,7 @@ function App() {
         alignment="right"
         project1={projects[0]}
         project2={projects[1]}
-        onProjectClick={setSelectedProject}
+        onProjectClick={() => {}}
         enableSnap={true}
       />
 
@@ -176,7 +175,7 @@ function App() {
         alignment="left"
         project1={projects[0]}
         project2={projects[1]}
-        onProjectClick={setSelectedProject}
+        onProjectClick={() => {}}
         enableSnap={true}
       />
 
@@ -232,115 +231,6 @@ function App() {
         </div>
       </section>
       </div>
-
-      {/* Project Detail Overlay */}
-      {selectedProject && (
-        <div
-          className="fixed inset-0 bg-[#0a0a0a] z-50 overflow-y-auto animate-in fade-in duration-300"
-          onClick={() => setSelectedProject(null)}
-        >
-          <div className="min-h-full flex flex-col" onClick={(e) => e.stopPropagation()}>
-            {/* Back button - Top left */}
-            <div className="p-8">
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer"
-              >
-                Back to main page
-              </button>
-            </div>
-
-            {/* Main content area */}
-            <div className="flex-1 flex items-center justify-center px-8 pb-20">
-              <div className="w-full max-w-[1400px] space-y-16">
-                {/* Image - Full width, cropped height */}
-                <div className="w-full h-[50vh] overflow-hidden">
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                {/* Details section below image */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16">
-                  {/* Project title - Left column */}
-                  <div className="lg:col-span-1">
-                    <h2 className="text-2xl font-light">{selectedProject.title}</h2>
-                  </div>
-
-                  {/* Description - Middle column */}
-                  <div className="lg:col-span-1">
-                    <p className="text-sm text-gray-400 leading-relaxed">
-                      {selectedProject.description}
-                    </p>
-                  </div>
-
-                  {/* Services and Link - Right column */}
-                  <div className="lg:col-span-1 space-y-6">
-                    <div>
-                      <h3 className="text-sm font-medium mb-3">Services</h3>
-                      <div className="space-y-1">
-                        {selectedProject.services.map((service, index) => (
-                          <div key={index} className="text-sm text-gray-400">
-                            {service}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {selectedProject.link && (
-                      <a
-                        href={selectedProject.link}
-                        className="inline-block text-sm underline text-gray-400 hover:text-white transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Visit Website
-                      </a>
-                    )}
-                  </div>
-                </div>
-
-                {/* Additional images in 16:9 format */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                  {/* Placeholder Image 1 */}
-                  <div className="w-full">
-                    <div className="aspect-[16/9] bg-gray-800 overflow-hidden">
-                      <img
-                        src={selectedProject.image}
-                        alt="Project detail 1"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Placeholder Image 2 */}
-                  <div className="w-full">
-                    <div className="aspect-[16/9] bg-gray-800 overflow-hidden">
-                      <img
-                        src={selectedProject.image}
-                        alt="Project detail 2"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Back to main page link at bottom */}
-                <div className="pt-8">
-                  <button
-                    onClick={() => setSelectedProject(null)}
-                    className="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer"
-                  >
-                    Back to main page
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
