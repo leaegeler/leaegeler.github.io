@@ -15,14 +15,16 @@ function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [heroOpacity, setHeroOpacity] = useState(1)
   const contactRef = useRef<HTMLElement>(null)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   const scrollToContact = () => {
     contactRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY
+    const handleScroll = (e: Event) => {
+      const target = e.target as HTMLDivElement
+      const scrollY = target.scrollTop
       const windowHeight = window.innerHeight
       // Fade out between 30% and 60% of screen height
       const fadeStart = windowHeight * 0.15
@@ -42,8 +44,11 @@ function App() {
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const scrollContainer = scrollContainerRef.current
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll)
+      return () => scrollContainer.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   const projects: Project[] = [
@@ -68,7 +73,7 @@ function App() {
   ]
 
   return (
-    <div className="relative bg-background text-foreground">
+    <div ref={scrollContainerRef} className="relative bg-background text-foreground snap-y snap-mandatory h-screen overflow-y-scroll">
       {/* Hero Section - Fixed background layer */}
       <div
         className="fixed top-0 left-0 right-0 bottom-0 min-h-screen overflow-hidden transition-opacity duration-100"
@@ -133,7 +138,7 @@ function App() {
       {/* Scrollable content layer */}
       <div className="relative z-10">
         {/* Spacer for hero section */}
-        <div className="h-screen pointer-events-none"></div>
+        <div className="h-screen pointer-events-none snap-start"></div>
 
         {/* Projects Section 1 - Small left, Large right */}
       <ProjectSection
@@ -141,6 +146,7 @@ function App() {
         project1={projects[0]}
         project2={projects[1]}
         onProjectClick={setSelectedProject}
+        enableSnap={true}
       />
 
       {/* Projects Section 2 - Large left, Small right */}
@@ -149,6 +155,7 @@ function App() {
         project1={projects[0]}
         project2={projects[1]}
         onProjectClick={setSelectedProject}
+        enableSnap={true}
       />
 
       {/* Projects Section 3 - Small left, Large right */}
@@ -157,10 +164,11 @@ function App() {
         project1={projects[0]}
         project2={projects[1]}
         onProjectClick={setSelectedProject}
+        enableSnap={true}
       />
 
       {/* Contact Section */}
-      <section ref={contactRef} className="min-h-screen bg-[#e8e5e1] text-black py-16 px-8 relative">
+      <section ref={contactRef} className="min-h-screen bg-[#e8e5e1] text-black py-16 px-8 relative snap-start">
         <div className="max-w-[1400px] mx-auto h-full flex flex-col justify-between">
           {/* Top - Contact Me dot */}
           <div className="flex items-center gap-2 border-t border-black pt-4">

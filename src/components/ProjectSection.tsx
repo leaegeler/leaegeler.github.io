@@ -13,13 +13,15 @@ interface ProjectSectionProps {
   project1: Project
   project2: Project
   onProjectClick: (project: Project) => void
+  enableSnap?: boolean
 }
 
 export function ProjectSection({
   alignment = 'left',
   project1,
   project2,
-  onProjectClick
+  onProjectClick,
+  enableSnap = false
 }: ProjectSectionProps) {
   // Determine which project gets which width based on alignment
   const smallWidth = 'lg:w-[30%] w-full'
@@ -55,7 +57,7 @@ export function ProjectSection({
   )
 
   return (
-    <section className="min-h-screen py-16 px-4 relative">
+    <section className={`min-h-screen py-16 px-4 relative bg-background ${enableSnap ? 'snap-start' : ''}`}>
       <div className="flex flex-col lg:flex-row gap-4 max-w-[1400px] mx-auto">
         <ProjectCard project={firstProject} width={firstWidth} />
         <ProjectCard project={secondProject} width={secondWidth} />
