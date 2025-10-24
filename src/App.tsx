@@ -18,7 +18,17 @@ function App() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   const scrollToContact = () => {
-    contactRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (contactRef.current && scrollContainerRef.current) {
+      const containerRect = scrollContainerRef.current.getBoundingClientRect()
+      const contactRect = contactRef.current.getBoundingClientRect()
+      const currentScroll = scrollContainerRef.current.scrollTop
+      const targetScroll = currentScroll + (contactRect.top - containerRect.top)
+
+      scrollContainerRef.current.scrollTo({
+        top: targetScroll,
+        behavior: 'smooth'
+      })
+    }
   }
 
   useEffect(() => {
@@ -74,21 +84,24 @@ function App() {
 
   return (
     <div ref={scrollContainerRef} className="relative bg-background text-foreground snap-y snap-mandatory h-screen overflow-y-scroll">
+      {/* Header - Only visible in hero */}
+      <header
+        className="fixed top-0 left-0 right-0 p-8 flex items-center justify-between z-50 transition-opacity duration-100"
+        style={{ opacity: heroOpacity, pointerEvents: heroOpacity > 0 ? 'auto' : 'none' }}
+      >
+        <button
+          onClick={scrollToContact}
+          className="text-sm hover:text-gray-300 transition-colors cursor-pointer"
+        >
+          Get in touch
+        </button>
+      </header>
+
       {/* Hero Section - Fixed background layer */}
       <div
-        className="fixed top-0 left-0 right-0 bottom-0 min-h-screen overflow-hidden transition-opacity duration-100"
+        className="fixed top-0 left-0 right-0 bottom-0 min-h-screen overflow-hidden transition-opacity duration-100 pointer-events-none"
         style={{ opacity: heroOpacity }}
       >
-        {/* Header */}
-        <header className="absolute top-0 left-0 right-0 p-8 flex items-center justify-between z-10">
-          <button
-            onClick={scrollToContact}
-            className="text-sm hover:text-gray-300 transition-colors"
-          >
-            Get in touch
-          </button>
-        </header>
-
         {/* Main Content */}
         <main className="container mx-auto px-8 min-h-screen flex flex-col justify-between py-20">
           {/* Hero Text */}
@@ -96,7 +109,7 @@ function App() {
             <div className="max-w-2xl space-y-8">
               <div className="space-y-2">
                 <p className="text-sm text-gray-400">
-                  Hi there! I'm a user experience and user interface designer from Germany, Munich with a love for all things web. I'm currently working at thr agency Fork Unstable Media and doing some freelane stuff.
+                  Hi there! I'm an user experience and user interface designer from Germany, Munich with a love for all things web. I'm currently working at the agency Fork Unstable Media and doing here and there some freelance stuff.
                 </p>
               </div>
             </div>
