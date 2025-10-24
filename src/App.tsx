@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { ProjectSection } from './components/ProjectSection'
 
 interface Project {
@@ -13,6 +13,11 @@ interface Project {
 
 function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const contactRef = useRef<HTMLElement>(null)
+
+  const scrollToContact = () => {
+    contactRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   const projects: Project[] = [
     {
@@ -36,12 +41,15 @@ function App() {
   ]
 
   return (
-    <div className="bg-background text-foreground">
+    <div className="bg-background text-foreground snap-y snap-mandatory h-screen overflow-y-scroll">
       {/* Hero Section */}
-      <div className="min-h-screen relative overflow-hidden">
+      <div className="min-h-screen relative overflow-hidden snap-start snap-always">
         {/* Header */}
         <header className="absolute top-0 left-0 right-0 p-8 flex items-center justify-between z-10">
-          <button className="text-sm hover:text-gray-300 transition-colors">
+          <button
+            onClick={scrollToContact}
+            className="text-sm hover:text-gray-300 transition-colors"
+          >
             Get in touch
           </button>
         </header>
@@ -117,7 +125,7 @@ function App() {
       />
 
       {/* Contact Section */}
-      <section className="min-h-screen bg-[#e8e5e1] text-black py-16 px-8">
+      <section ref={contactRef} className="min-h-screen bg-[#e8e5e1] text-black py-16 px-8 snap-start snap-always">
         <div className="max-w-[1400px] mx-auto h-full flex flex-col justify-between">
           {/* Top - Contact Me dot */}
           <div className="flex items-center gap-2 border-t border-black pt-4">
