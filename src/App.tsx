@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { ProjectSection } from './components/ProjectSection'
 
 interface Project {
@@ -13,11 +13,38 @@ interface Project {
 
 function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [heroOpacity, setHeroOpacity] = useState(1)
   const contactRef = useRef<HTMLElement>(null)
 
   const scrollToContact = () => {
     contactRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY
+      const windowHeight = window.innerHeight
+      // Fade out between 30% and 60% of screen height
+      const fadeStart = windowHeight * 0.15
+      const fadeEnd = windowHeight * 0.85
+      const fadeRange = fadeEnd - fadeStart
+
+      if (scrollY < fadeStart) {
+        setHeroOpacity(1)
+      } else if (scrollY > fadeEnd) {
+        setHeroOpacity(0)
+      } else {
+        const progress = (scrollY - fadeStart) / fadeRange
+        // Ease-out cubic easing for smooth fade
+        const easedProgress = 1 - Math.pow(1 - progress, 3)
+        const opacity = 1 - easedProgress
+        setHeroOpacity(opacity)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const projects: Project[] = [
     {
@@ -41,9 +68,12 @@ function App() {
   ]
 
   return (
-    <div className="bg-background text-foreground snap-y snap-mandatory h-screen overflow-y-scroll">
-      {/* Hero Section */}
-      <div className="min-h-screen relative overflow-hidden snap-start snap-always">
+    <div className="relative bg-background text-foreground">
+      {/* Hero Section - Fixed background layer */}
+      <div
+        className="fixed top-0 left-0 right-0 bottom-0 min-h-screen overflow-hidden transition-opacity duration-100"
+        style={{ opacity: heroOpacity }}
+      >
         {/* Header */}
         <header className="absolute top-0 left-0 right-0 p-8 flex items-center justify-between z-10">
           <button
@@ -100,7 +130,12 @@ function App() {
         </div>
       </div>
 
-      {/* Projects Section 1 - Small left, Large right */}
+      {/* Scrollable content layer */}
+      <div className="relative z-10">
+        {/* Spacer for hero section */}
+        <div className="h-screen pointer-events-none"></div>
+
+        {/* Projects Section 1 - Small left, Large right */}
       <ProjectSection
         alignment="left"
         project1={projects[0]}
@@ -125,7 +160,7 @@ function App() {
       />
 
       {/* Contact Section */}
-      <section ref={contactRef} className="min-h-screen bg-[#e8e5e1] text-black py-16 px-8 snap-start snap-always">
+      <section ref={contactRef} className="min-h-screen bg-[#e8e5e1] text-black py-16 px-8 relative">
         <div className="max-w-[1400px] mx-auto h-full flex flex-col justify-between">
           {/* Top - Contact Me dot */}
           <div className="flex items-center gap-2 border-t border-black pt-4">
@@ -175,6 +210,7 @@ function App() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* Project Detail Overlay */}
       {selectedProject && (
