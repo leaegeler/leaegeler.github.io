@@ -64,12 +64,12 @@ function App() {
   const projects: Project[] = [
     {
       id: 1,
-      title: "Dr. Garving",
-      description: "Aesthetic medicine branding and web design project featuring elegant color palette and modern design.",
-      services: ["Branding", "Web Design", "Development"],
+      title: "Dr. med. Christina Garving",
+      description: "Dr. med. Christina Garving bietet in ihrer Münchner Privatpraxis ein weites Spektrum der ästhetischen Dermatologie und nutzt für herausragende medizinische Ergebnisse innovative Techniken und Technologien für eine schonende Medizin auf höchstem Level.",
+      services: ["Corporate Design und Branding", "Webdesign UX / UI"],
       year: "2024",
-      image: "/src/assets/garvingcase.png",
-      link: "#"
+      image: "/src/assets/drgarving/drgarving_stage.jpg",
+      link: "https://drgarving.de"
     },
     {
       id: 2,
