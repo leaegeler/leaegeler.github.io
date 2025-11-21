@@ -1,6 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
 import { ProjectSection } from './components/ProjectSection'
-import ArrowDown from './assets/arrow-down.svg'
 
 interface Project {
   id: number
@@ -68,7 +67,7 @@ function App() {
       description: "Dr. med. Christina Garving bietet in ihrer Münchner Privatpraxis ein weites Spektrum der ästhetischen Dermatologie und nutzt für herausragende medizinische Ergebnisse innovative Techniken und Technologien für eine schonende Medizin auf höchstem Level.",
       services: ["Corporate Design und Branding", "Webdesign UX / UI"],
       year: "2024",
-      image: "/src/assets/drgarving/drgarving_stage.jpg",
+      image: "/assets/drgarving/drgarving_stage.jpg",
       link: "https://drgarving.de"
     },
     {
@@ -77,7 +76,7 @@ function App() {
       description: "Mobile app design for local business discovery platform with vibrant UI and intuitive navigation.",
       services: ["Branding", "Web Design", "Development"],
       year: "2024",
-      image: "/src/assets/mood 1.jpg",
+      image: "/assets/mood 1.jpg",
       link: "#"
     }
   ]
@@ -95,7 +94,7 @@ function App() {
         >
           <span>Get in touch</span>
           <img
-            src={ArrowDown}
+            src="/assets/arrow-down.svg"
             alt=""
             className="w-5 h-5"
             style={{

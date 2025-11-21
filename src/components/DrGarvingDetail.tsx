@@ -18,7 +18,7 @@ export default function DrGarvingDetail({ onClose }: DrGarvingDetailProps) {
             className="w-full"
           >
             <img
-              src="/src/assets/drgarving/kugelschreiber-mockup.jpg"
+              src="/assets/drgarving/kugelschreiber-mockup.jpg"
               alt="Dr. Garving Kugelschreiber"
               className="w-full h-auto object-cover"
               style={{ borderRadius: '16px' }}
@@ -32,7 +32,7 @@ export default function DrGarvingDetail({ onClose }: DrGarvingDetailProps) {
             className="w-full pt-12 lg:pt-20"
           >
             <img
-              src="/src/assets/drgarving/businesscards.jpg"
+              src="/assets/drgarving/businesscards.jpg"
               alt="Dr. Garving Business Cards"
               className="w-full h-auto object-cover"
               style={{ borderRadius: '16px' }}
@@ -52,7 +52,7 @@ export default function DrGarvingDetail({ onClose }: DrGarvingDetailProps) {
             className="w-full flex items-center justify-center"
           >
             <video
-              src="/src/assets/drgarving/homestage.mp4"
+              src="/assets/drgarving/homestage.mp4"
               autoPlay
               loop
               muted
@@ -69,7 +69,7 @@ export default function DrGarvingDetail({ onClose }: DrGarvingDetailProps) {
             className="w-full pt-12 lg:pt-20"
           >
             <img
-              src="/src/assets/drgarving/components.jpg"
+              src="/assets/drgarving/components.jpg"
               alt="Dr. Garving Design Components"
               className="w-full h-auto object-cover"
               style={{ borderRadius: '16px' }}
@@ -88,7 +88,7 @@ export default function DrGarvingDetail({ onClose }: DrGarvingDetailProps) {
           className="w-full max-w-7xl"
         >
           <img
-            src="/src/assets/drgarving/moods.jpg"
+            src="/assets/drgarving/moods.jpg"
             alt="Dr. Garving Moods"
             className="w-full h-auto object-cover"
             style={{ borderRadius: '16px' }}
@@ -107,7 +107,7 @@ export default function DrGarvingDetail({ onClose }: DrGarvingDetailProps) {
             className="flex items-center justify-center"
           >
             <img
-              src="/src/assets/drgarving/website1.PNG"
+              src="/assets/drgarving/website1.PNG"
               alt="Dr. Garving Website Screen 1"
               className="w-auto h-auto max-h-[60vh] md:max-h-[65vh] object-contain"
               style={{ borderRadius: '16px' }}
@@ -121,7 +121,7 @@ export default function DrGarvingDetail({ onClose }: DrGarvingDetailProps) {
             className="flex items-center justify-center md:pt-20 lg:pt-24"
           >
             <img
-              src="/src/assets/drgarving/website2.PNG"
+              src="/assets/drgarving/website2.PNG"
               alt="Dr. Garving Website Screen 2"
               className="w-auto h-auto max-h-[60vh] md:max-h-[65vh] object-contain"
               style={{ borderRadius: '16px' }}
@@ -135,7 +135,7 @@ export default function DrGarvingDetail({ onClose }: DrGarvingDetailProps) {
             className="flex items-center justify-center"
           >
             <img
-              src="/src/assets/drgarving/website3.PNG"
+              src="/assets/drgarving/website3.PNG"
               alt="Dr. Garving Website Screen 3"
               className="w-auto h-auto max-h-[60vh] md:max-h-[65vh] object-contain"
               style={{ borderRadius: '16px' }}

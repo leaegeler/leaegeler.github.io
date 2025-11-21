@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import ArrowLeft from '../assets/arrow-left.svg'
-import ArrowRightYellow from '../assets/arrow-right_yellow.svg'
 import DrGarvingDetail from './DrGarvingDetail'
 
 interface Project {
@@ -189,7 +187,7 @@ export function ProjectSection({
                               rel="noopener noreferrer"
                             >
                               <img
-                                src={ArrowRightYellow}
+                                src="/assets/arrow-right_yellow.svg"
                                 alt=""
                                 className="w-6 h-6 group-hover:translate-x-1 transition-transform"
                               />
@@ -311,7 +309,7 @@ export function ProjectSection({
                       className="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center gap-2"
                     >
                       <img
-                        src={ArrowLeft}
+                        src="/assets/arrow-left.svg"
                         alt=""
                         className="w-5 h-5"
                         style={{
